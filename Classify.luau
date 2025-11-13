@@ -211,7 +211,7 @@ end
 
     @param PushingArgs PushingMetamethodType
 
-    @return: Class<unknown>?
+    @return Class<unknown>?
 ]]
 function UtilityFunctions:DEFAULT_ADD_CALLBACK(PushingArgs: PushingMetamethodType): Class<unknown>?
     if table.isfrozen(self :: any) then return nil end
