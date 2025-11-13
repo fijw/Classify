@@ -253,7 +253,7 @@ function UtilityFunctions:DEFAULT_CLASS_CALLBACK
     local PathArgs = { ... }
 	local pushScope = self.source
 
-    -- Find the parent directory
+    -- Find the parent directory.
 	for i = 1, #PathArgs do
 	    if not pushScope[PathArgs[i]] then pushScope[PathArgs[i]] = {} end
 	    pushScope = pushScope[PathArgs[i]]
