@@ -253,11 +253,13 @@ function UtilityFunctions:DEFAULT_CLASS_CALLBACK
     local PathArgs = { ... }
 	local pushScope = self.source
 
+    -- Find the parent directory
 	for i = 1, #PathArgs do
 	    if not pushScope[PathArgs[i]] then pushScope[PathArgs[i]] = {} end
 	    pushScope = pushScope[PathArgs[i]]
 	end
 
+    -- If there's a key set the value with a key.
 	if key then
 	    pushScope[key] = value
 	    if not self.subscriptionCallback then return self.source end
@@ -268,11 +270,14 @@ function UtilityFunctions:DEFAULT_CLASS_CALLBACK
         return self.source
 	end
 
-	self.source = value
-	if not self.subscriptionCallback then return self.source end
+    -- If there's no key set the value directly.
+    do
+        self.source = value
+        if not self.subscriptionCallback then return self.source end
 
-	self.subscriptionCallback(key, value)
-    UtilityFunctions.subscribedOnceCheck(self)
+        self.subscriptionCallback(key, value)
+        UtilityFunctions.subscribedOnceCheck(self)
+    end
                         
     return self.source
 end
